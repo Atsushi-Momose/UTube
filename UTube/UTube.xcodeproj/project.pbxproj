@@ -16,6 +16,10 @@
 		9026023027E05BAA00570BCE /* UTubeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9026022F27E05BAA00570BCE /* UTubeTests.swift */; };
 		9026023A27E05BAA00570BCE /* UTubeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9026023927E05BAA00570BCE /* UTubeUITests.swift */; };
 		9026023C27E05BAA00570BCE /* UTubeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9026023B27E05BAA00570BCE /* UTubeUITestsLaunchTests.swift */; };
+		9026024927E06FF400570BCE /* UTubePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9026024827E06FF400570BCE /* UTubePresenter.swift */; };
+		9026024B27E0709F00570BCE /* UTubeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9026024A27E0709F00570BCE /* UTubeInteractor.swift */; };
+		9026024D27E070CF00570BCE /* UTubeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9026024C27E070CF00570BCE /* UTubeEntity.swift */; };
+		9026024F27E0718800570BCE /* UTubeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9026024E27E0718800570BCE /* UTubeRouter.swift */; };
 		F01C138A6DB5157F2EEBD75C /* Pods_UTube.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39282A42695DFF1303770A16 /* Pods_UTube.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +57,10 @@
 		9026023527E05BAA00570BCE /* UTubeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UTubeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9026023927E05BAA00570BCE /* UTubeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTubeUITests.swift; sourceTree = "<group>"; };
 		9026023B27E05BAA00570BCE /* UTubeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTubeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		9026024827E06FF400570BCE /* UTubePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTubePresenter.swift; sourceTree = "<group>"; };
+		9026024A27E0709F00570BCE /* UTubeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTubeInteractor.swift; sourceTree = "<group>"; };
+		9026024C27E070CF00570BCE /* UTubeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTubeEntity.swift; sourceTree = "<group>"; };
+		9026024E27E0718800570BCE /* UTubeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTubeRouter.swift; sourceTree = "<group>"; };
 		CCBD9B2ABAC50463C7EB9BA1 /* Pods-UTube.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTube.release.xcconfig"; path = "Target Support Files/Pods-UTube/Pods-UTube.release.xcconfig"; sourceTree = "<group>"; };
 		E052EFD4E8893D1C26367C5D /* Pods-UTube.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTube.debug.xcconfig"; path = "Target Support Files/Pods-UTube/Pods-UTube.debug.xcconfig"; sourceTree = "<group>"; };
 		F6DEE034B292B311D5491D6D /* Pods-UTube-UTubeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTube-UTubeUITests.release.xcconfig"; path = "Target Support Files/Pods-UTube-UTubeUITests/Pods-UTube-UTubeUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -106,7 +114,6 @@
 				197BCA55BEFB3DC1E6F842F4 /* Pods-UTubeTests.debug.xcconfig */,
 				83E4B55B8D5474942A5B9A57 /* Pods-UTubeTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -139,6 +146,10 @@
 				9026022027E05BA700570BCE /* ContentView.swift */,
 				9026022227E05BAA00570BCE /* Assets.xcassets */,
 				9026022427E05BAA00570BCE /* Preview Content */,
+				9026024827E06FF400570BCE /* UTubePresenter.swift */,
+				9026024E27E0718800570BCE /* UTubeRouter.swift */,
+				9026024A27E0709F00570BCE /* UTubeInteractor.swift */,
+				9026024C27E070CF00570BCE /* UTubeEntity.swift */,
 			);
 			path = UTube;
 			sourceTree = "<group>";
@@ -406,7 +417,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9026024B27E0709F00570BCE /* UTubeInteractor.swift in Sources */,
+				9026024D27E070CF00570BCE /* UTubeEntity.swift in Sources */,
+				9026024927E06FF400570BCE /* UTubePresenter.swift in Sources */,
 				9026022127E05BA700570BCE /* ContentView.swift in Sources */,
+				9026024F27E0718800570BCE /* UTubeRouter.swift in Sources */,
 				9026021F27E05BA700570BCE /* UTubeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
