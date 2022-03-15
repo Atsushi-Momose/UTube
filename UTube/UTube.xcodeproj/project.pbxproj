@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		182AFB83479B07443680F252 /* Pods_UTubeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77940B7F75FB474061A9327D /* Pods_UTubeTests.framework */; };
+		82146D6DDC99D646CA724B85 /* Pods_UTube_UTubeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3368A2FB6EDA1167B49EE1 /* Pods_UTube_UTubeUITests.framework */; };
 		9026021F27E05BA700570BCE /* UTubeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9026021E27E05BA700570BCE /* UTubeApp.swift */; };
 		9026022127E05BA700570BCE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9026022027E05BA700570BCE /* ContentView.swift */; };
 		9026022327E05BAA00570BCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9026022227E05BAA00570BCE /* Assets.xcassets */; };
@@ -14,6 +16,7 @@
 		9026023027E05BAA00570BCE /* UTubeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9026022F27E05BAA00570BCE /* UTubeTests.swift */; };
 		9026023A27E05BAA00570BCE /* UTubeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9026023927E05BAA00570BCE /* UTubeUITests.swift */; };
 		9026023C27E05BAA00570BCE /* UTubeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9026023B27E05BAA00570BCE /* UTubeUITestsLaunchTests.swift */; };
+		F01C138A6DB5157F2EEBD75C /* Pods_UTube.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39282A42695DFF1303770A16 /* Pods_UTube.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +37,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		197BCA55BEFB3DC1E6F842F4 /* Pods-UTubeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTubeTests.debug.xcconfig"; path = "Target Support Files/Pods-UTubeTests/Pods-UTubeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		39282A42695DFF1303770A16 /* Pods_UTube.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UTube.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E3368A2FB6EDA1167B49EE1 /* Pods_UTube_UTubeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UTube_UTubeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		75DB0B5811853177D87B47E4 /* Pods-UTube-UTubeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTube-UTubeUITests.debug.xcconfig"; path = "Target Support Files/Pods-UTube-UTubeUITests/Pods-UTube-UTubeUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		77940B7F75FB474061A9327D /* Pods_UTubeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UTubeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		83E4B55B8D5474942A5B9A57 /* Pods-UTubeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTubeTests.release.xcconfig"; path = "Target Support Files/Pods-UTubeTests/Pods-UTubeTests.release.xcconfig"; sourceTree = "<group>"; };
 		9026021B27E05BA700570BCE /* UTube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UTube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9026021E27E05BA700570BCE /* UTubeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTubeApp.swift; sourceTree = "<group>"; };
 		9026022027E05BA700570BCE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -44,6 +53,9 @@
 		9026023527E05BAA00570BCE /* UTubeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UTubeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9026023927E05BAA00570BCE /* UTubeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTubeUITests.swift; sourceTree = "<group>"; };
 		9026023B27E05BAA00570BCE /* UTubeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTubeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CCBD9B2ABAC50463C7EB9BA1 /* Pods-UTube.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTube.release.xcconfig"; path = "Target Support Files/Pods-UTube/Pods-UTube.release.xcconfig"; sourceTree = "<group>"; };
+		E052EFD4E8893D1C26367C5D /* Pods-UTube.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTube.debug.xcconfig"; path = "Target Support Files/Pods-UTube/Pods-UTube.debug.xcconfig"; sourceTree = "<group>"; };
+		F6DEE034B292B311D5491D6D /* Pods-UTube-UTubeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTube-UTubeUITests.release.xcconfig"; path = "Target Support Files/Pods-UTube-UTubeUITests/Pods-UTube-UTubeUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F01C138A6DB5157F2EEBD75C /* Pods_UTube.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				182AFB83479B07443680F252 /* Pods_UTubeTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,12 +79,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82146D6DDC99D646CA724B85 /* Pods_UTube_UTubeUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		608F92C7399E307903F51076 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				39282A42695DFF1303770A16 /* Pods_UTube.framework */,
+				5E3368A2FB6EDA1167B49EE1 /* Pods_UTube_UTubeUITests.framework */,
+				77940B7F75FB474061A9327D /* Pods_UTubeTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7DA56EAF5C2648B5BD384BB3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E052EFD4E8893D1C26367C5D /* Pods-UTube.debug.xcconfig */,
+				CCBD9B2ABAC50463C7EB9BA1 /* Pods-UTube.release.xcconfig */,
+				75DB0B5811853177D87B47E4 /* Pods-UTube-UTubeUITests.debug.xcconfig */,
+				F6DEE034B292B311D5491D6D /* Pods-UTube-UTubeUITests.release.xcconfig */,
+				197BCA55BEFB3DC1E6F842F4 /* Pods-UTubeTests.debug.xcconfig */,
+				83E4B55B8D5474942A5B9A57 /* Pods-UTubeTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		9026021227E05BA700570BCE = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +117,8 @@
 				9026022E27E05BAA00570BCE /* UTubeTests */,
 				9026023827E05BAA00570BCE /* UTubeUITests */,
 				9026021C27E05BA700570BCE /* Products */,
+				7DA56EAF5C2648B5BD384BB3 /* Pods */,
+				608F92C7399E307903F51076 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -134,9 +175,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9026023F27E05BAA00570BCE /* Build configuration list for PBXNativeTarget "UTube" */;
 			buildPhases = (
+				5DDC9FD8FA7154A47208089E /* [CP] Check Pods Manifest.lock */,
 				9026021727E05BA700570BCE /* Sources */,
 				9026021827E05BA700570BCE /* Frameworks */,
 				9026021927E05BA700570BCE /* Resources */,
+				C7872E8322AE090BDA329661 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -151,6 +194,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9026024227E05BAA00570BCE /* Build configuration list for PBXNativeTarget "UTubeTests" */;
 			buildPhases = (
+				15CCDC8FC56BBE8139ACE458 /* [CP] Check Pods Manifest.lock */,
 				9026022727E05BAA00570BCE /* Sources */,
 				9026022827E05BAA00570BCE /* Frameworks */,
 				9026022927E05BAA00570BCE /* Resources */,
@@ -169,9 +213,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9026024527E05BAA00570BCE /* Build configuration list for PBXNativeTarget "UTubeUITests" */;
 			buildPhases = (
+				A00E5191AE44FB5309891C5F /* [CP] Check Pods Manifest.lock */,
 				9026023127E05BAA00570BCE /* Sources */,
 				9026023227E05BAA00570BCE /* Frameworks */,
 				9026023327E05BAA00570BCE /* Resources */,
+				57A9E72A27E703D4C044D821 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -251,6 +297,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		15CCDC8FC56BBE8139ACE458 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-UTubeTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		57A9E72A27E703D4C044D821 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UTube-UTubeUITests/Pods-UTube-UTubeUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UTube-UTubeUITests/Pods-UTube-UTubeUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UTube-UTubeUITests/Pods-UTube-UTubeUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5DDC9FD8FA7154A47208089E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-UTube-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A00E5191AE44FB5309891C5F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-UTube-UTubeUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C7872E8322AE090BDA329661 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UTube/Pods-UTube-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UTube/Pods-UTube-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UTube/Pods-UTube-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9026021727E05BA700570BCE /* Sources */ = {
@@ -413,6 +562,7 @@
 		};
 		9026024027E05BAA00570BCE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E052EFD4E8893D1C26367C5D /* Pods-UTube.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -441,6 +591,7 @@
 		};
 		9026024127E05BAA00570BCE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CCBD9B2ABAC50463C7EB9BA1 /* Pods-UTube.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -469,6 +620,7 @@
 		};
 		9026024327E05BAA00570BCE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 197BCA55BEFB3DC1E6F842F4 /* Pods-UTubeTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -488,6 +640,7 @@
 		};
 		9026024427E05BAA00570BCE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83E4B55B8D5474942A5B9A57 /* Pods-UTubeTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -507,6 +660,7 @@
 		};
 		9026024627E05BAA00570BCE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 75DB0B5811853177D87B47E4 /* Pods-UTube-UTubeUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -524,6 +678,7 @@
 		};
 		9026024727E05BAA00570BCE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F6DEE034B292B311D5491D6D /* Pods-UTube-UTubeUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
