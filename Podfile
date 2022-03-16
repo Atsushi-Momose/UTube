@@ -28,6 +28,9 @@ target 'UTube' do
 
   #画像
   pod 'Kingfisher'
+  
+  #コレクションビュー
+  pod 'ASCollectionView-SwiftUI', '~> 1.3'
 
 # # # # # # # # # # # # # # # # # # # # # # # 
 

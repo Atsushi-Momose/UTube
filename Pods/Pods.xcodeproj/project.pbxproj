@@ -462,7 +462,7 @@
 		9159159DF34141916B594FEC3F2D70E3 /* KeychainAccess.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = KeychainAccess.modulemap; sourceTree = "<group>"; };
 		928C20BDC7ED8A00E3F356B7DDF0BC94 /* SizeExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SizeExtensions.swift; path = Sources/Utility/SizeExtensions.swift; sourceTree = "<group>"; };
 		937D235B185496AD309CF71D224C9FB5 /* NSButton+Kingfisher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSButton+Kingfisher.swift"; path = "Sources/Extensions/NSButton+Kingfisher.swift"; sourceTree = "<group>"; };
-		9459026D197F95C90205F77F70D73CE7 /* Pods-UTube */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-UTube"; path = Pods_UTube.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9459026D197F95C90205F77F70D73CE7 /* Pods_UTube.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UTube.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94922BA1C06244603DED3CEE776CFBA1 /* Pods-UTube-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-UTube-frameworks.sh"; sourceTree = "<group>"; };
 		94BD729E9E0D81B79B40B0C3E9A26815 /* SVProgressHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVProgressHUD.h; path = SVProgressHUD/SVProgressHUD.h; sourceTree = "<group>"; };
 		95CF4A617A88DE49603961DDEC82A688 /* IQToolbar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IQToolbar.swift; path = IQKeyboardManagerSwift/IQToolbar/IQToolbar.swift; sourceTree = "<group>"; };
@@ -879,7 +879,7 @@
 				A8E950A16D00F649C54FFB30F81D7842 /* IQKeyboardManagerSwift.framework */,
 				E8EE7F078656FABB8F6821D10FF994BB /* KeychainAccess.framework */,
 				C3F44C782D64D7EB20B61CE3844EBFAD /* Kingfisher */,
-				9459026D197F95C90205F77F70D73CE7 /* Pods-UTube */,
+				9459026D197F95C90205F77F70D73CE7 /* Pods_UTube.framework */,
 				1A4B792C07924485423A6D1694B72E32 /* Pods-UTube-UTubeUITests */,
 				68AB23E84A9BCBCF550B0700C1755883 /* Pods-UTubeTests */,
 				CA4E3B66CE4D02048C77392B64FD0ABB /* Rswift.framework */,
@@ -1248,7 +1248,7 @@
 			);
 			name = "Pods-UTube";
 			productName = Pods_UTube;
-			productReference = 9459026D197F95C90205F77F70D73CE7 /* Pods-UTube */;
+			productReference = 9459026D197F95C90205F77F70D73CE7 /* Pods_UTube.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		615C831BCE925ED486B225B87E44926D /* KeychainAccess */ = {

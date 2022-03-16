@@ -1,5 +1,7 @@
 ${PODS_ROOT}/Target Support Files/Pods-UTube-UTubeUITests/Pods-UTube-UTubeUITests-frameworks.sh
+${BUILT_PRODUCTS_DIR}/ASCollectionView-SwiftUI/ASCollectionView_SwiftUI.framework
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/DifferenceKit/DifferenceKit.framework
 ${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework
 ${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework
 ${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework
