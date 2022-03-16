@@ -21,6 +21,7 @@
 		9026024D27E070CF00570BCE /* UTubeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9026024C27E070CF00570BCE /* UTubeEntity.swift */; };
 		9026024F27E0718800570BCE /* UTubeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9026024E27E0718800570BCE /* UTubeRouter.swift */; };
 		905FED5827E0A93200482078 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905FED5727E0A93200482078 /* APIConstants.swift */; };
+		908C700A27E1F65C003E4E6A /* ASCollectionView in Frameworks */ = {isa = PBXBuildFile; productRef = 908C700927E1F65C003E4E6A /* ASCollectionView */; };
 		F01C138A6DB5157F2EEBD75C /* Pods_UTube.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39282A42695DFF1303770A16 /* Pods_UTube.framework */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +75,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F01C138A6DB5157F2EEBD75C /* Pods_UTube.framework in Frameworks */,
+				908C700A27E1F65C003E4E6A /* ASCollectionView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +202,9 @@
 			dependencies = (
 			);
 			name = UTube;
+			packageProductDependencies = (
+				908C700927E1F65C003E4E6A /* ASCollectionView */,
+			);
 			productName = UTube;
 			productReference = 9026021B27E05BA700570BCE /* UTube.app */;
 			productType = "com.apple.product-type.application";
@@ -755,6 +760,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		908C700927E1F65C003E4E6A /* ASCollectionView */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ASCollectionView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9026021327E05BA700570BCE /* Project object */;
 }

@@ -5,6 +5,9 @@
       location = "group:UTube.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:../Downloads/ASCollectionView-master">
+   </FileRef>
+   <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>
