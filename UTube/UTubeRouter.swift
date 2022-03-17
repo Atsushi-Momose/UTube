@@ -7,3 +7,15 @@
 
 import Foundation
 
+protocol RepositorySearchResultWireframe: AnyObject {
+    func showRepositoryDetail(_ repository: UTubeEntity)
+}
+
+class UTubeRouter {
+}
+
+extension UTubeRouter: RepositorySearchResultWireframe {
+    func showRepositoryDetail(_ repository: UTubeEntity) {
+        
+    }
+}
