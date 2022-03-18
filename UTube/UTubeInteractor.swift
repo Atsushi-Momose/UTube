@@ -8,6 +8,7 @@
 import Foundation
 import Alamofire
 import KeychainAccess
+import Combine
 
 enum searchType: Int {
     case newArrival = 1// 新着
@@ -17,13 +18,17 @@ enum searchType: Int {
 
 protocol UTubeUsecase {
     func getSearchParam(param: String)
+    func listPublisher() -> AnyPublisher<[UTubeEntity], Error>
 }
 
-class UTubeInteractor: ObservableObject {
+class UTubeInteractor {
     
-    @Published var searchedItems: [UTubeEntity]
+    var searchedItems: [UTubeEntity]
     private var searchParam: String?
     private var nextPageToken: String?
+    
+    var utubeListPublisher: AnyPublisher<[UTubeEntity], Error> { subject.eraseToAnyPublisher() }
+    private let subject = PassthroughSubject<[UTubeEntity], Error>()
     
     init() {
         self.searchedItems = [] // 検索結果
@@ -33,35 +38,42 @@ class UTubeInteractor: ObservableObject {
 }
 
 extension UTubeInteractor: UTubeUsecase, UTubePresentation {
+   
+    // protocol
+    func listPublisher() -> AnyPublisher<[UTubeEntity], Error> {
+        return self.utubeListPublisher
+    }
+    
+    func textFieldDidChanged(searchWord: String) {}
     
     func getSearchParam(param: String) {
         self.makeSearchURL(searchType: .textSearch, param: param, channelID: nil)
     }
-
-    func fetchSearchResult(urlString: String) {
-        guard let url = URL(string: urlString) else { return }
+    
+    private func fetchSearchResult(param urlString: String) {
+        
+        guard let url = URL(string: urlString) else { fatalError() }
         
         AF.request(url)
             .validate(statusCode: 200..<300)
             .responseData { response in
-                guard let data = response.data else {
-                    return
-                }
+                
+                guard let data = response.data else { return }
+                
                 do {
                     let utubeEntity = try JSONDecoder().decode(UTubeEntity.self, from: data)
                     self.searchedItems.append(utubeEntity)
+                
                     // presenterに通知
-                    NotificationCenter.default.post(name: .textSearchDidEnd, object: nil, userInfo: ["items": self.searchedItems])
+                    //  NotificationCenter.default.post(name: .textSearchDidEnd, object: nil, userInfo: ["items": self.searchedItems])
+                    
                     
                 } catch {
                     print("")
                 }
+                self.subject.send(self.searchedItems)
             }
     }
-    
-    // protocol
-    func textFieldDidChanged(searchWord: String) {}
-    
     
     private func makeSearchURL(searchType: searchType, param: String, channelID: String?) {
         guard let apiKey = self.getApiKey() else { return }
@@ -85,7 +97,7 @@ extension UTubeInteractor: UTubeUsecase, UTubePresentation {
             guard let channelId = channelID else { return }
             searchURL = (String(format: APIConstants().searchChannelIDURL, channelId, apiKey))
         }
-        self.fetchSearchResult(urlString: searchURL)
+        self.fetchSearchResult(param: searchURL)
     }
     
     

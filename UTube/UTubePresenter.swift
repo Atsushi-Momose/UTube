@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 protocol UTubePresentation {
     func textFieldDidChanged(searchWord: String)
@@ -13,13 +14,20 @@ protocol UTubePresentation {
 
 class UtubePresenter {
     
-    private var interactor: UTubeUsecase
     var searchedItems: [UTubeEntity]
+    private var interactor: UTubeUsecase
+    private var cancellables = [AnyCancellable]()
     
-    init(interactor: UTubeUsecase) {
+    init(interactor: UTubeInteractor) {
         self.interactor = interactor
         self.searchedItems = [UTubeEntity]()
         
+        // UTubeInteractorから通知を受け取ったら自身のsearchedItemsを上書き
+        self.interactor.listPublisher()
+            .sink(receiveCompletion: { print ("completion: \($0)") },
+                  receiveValue: { value in self.searchedItems = value}) // eceiveValue: { print ("value: \($0)") })
+            .store(in: &cancellables)
+
         // 検索完了通知受け取り
         NotificationCenter.default.addObserver(self, selector: #selector(reload(notification:)), name: .textSearchDidEnd, object: nil)
     }
