@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct UTubeEntity: Codable {
-    
+struct UTubeEntity: Codable, Hashable {
+        
     var pageInfo: pInfo?
     var etag: String?
     var kind: String?
@@ -16,24 +16,25 @@ struct UTubeEntity: Codable {
     var nextPageToken: String?
     var regionCode: String?
     
-    struct pInfo: Codable {
+    struct pInfo: Codable, Hashable {
         var resultsPerPage: NSInteger?
         var totalResults: NSInteger?
     }
     
-    struct itemInfoList: Codable {
+    struct itemInfoList: Codable, Hashable {
+      //  var code = UUID() //ユニークID: APIから返却されたものではない
         var etag: String?
         var kind: String?
         var id: idItems?
         var snippet: snipetItem?
     }
     
-    struct idItems: Codable {
+    struct idItems: Codable, Hashable {
         var kind: String?
         var videoId: String?
     }
     
-    struct snipetItem: Codable {
+    struct snipetItem: Codable, Hashable {
         var thumbnails: thumbnailList?
         var channelId: String?
         var title: String?
@@ -43,13 +44,13 @@ struct UTubeEntity: Codable {
         var channelTitle: String?
     }
     
-    struct thumbnailList: Codable {
+    struct thumbnailList: Codable, Hashable {
         var `default`: defaultItems?
         var high: defaultItems?
         var medium: defaultItems?
     }
     
-    struct defaultItems: Codable {
+    struct defaultItems: Codable, Hashable {
         var url: String?
         var width: NSInteger?
         var height: NSInteger?
