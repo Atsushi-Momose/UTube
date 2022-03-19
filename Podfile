@@ -27,7 +27,7 @@ target 'UTube' do
   pod 'KeychainAccess'
 
   #画像
-  pod 'Kingfisher'
+  pod 'SDWebImageSwiftUI'
   
 
 # # # # # # # # # # # # # # # # # # # # # # # 
