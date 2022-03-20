@@ -8,6 +8,7 @@
 import SwiftUI
 import ASCollectionView
 import SDWebImageSwiftUI
+import SVProgressHUD
 
 struct ContentView: View {
     
@@ -26,6 +27,7 @@ struct ContentView: View {
         VStack {
             TextField("検索ワードを入力", text: $searchWord)
                 .onChange(of: self.searchWord) { newValue in
+                    SVProgressHUD.show()
                     self.presenter.textFieldDidChanged(searchWord: newValue)
                 }
                 .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -52,7 +54,7 @@ struct ContentView: View {
             }
             
             .onChange(of: self.presenter.searchedItems) { items in
-                
+                SVProgressHUD.dismiss()
                 
             }
         }
