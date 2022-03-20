@@ -14,14 +14,9 @@ struct ContentView: View {
     
     @State private var searchWord = ""
     @ObservedObject var presenter = UtubePresenter(interactor: UTubeInteractor())
-    // @ObservedObject var viewModel: ViewModel
-    
+  
     var router = UTubeRouter()
-    
-    //    init() {
-    //        self.presenter = UtubePresenter(interactor: UTubeInteractor())
-    //    }
-    
+        
     var body: some View {
         
         VStack {
@@ -33,7 +28,7 @@ struct ContentView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             List {
-                let items = self.presenter.searchedItems.first?.items
+                let items = self.presenter.searchedItems.items
                 
                 ForEach(items ?? [], id: \.self) { item in
                     VStack {
@@ -49,11 +44,21 @@ struct ContentView: View {
                             Text (item.snippet?.channelTitle ?? "") // ちゃんねる名
                                 .font(.footnote)
                         }
+                        
+                    }
+                }
+                
+                // 一番下までスクロールした時にnextPageTokenがあれば取得を行う
+                .onAppear() {
+                    
+                    if self.presenter.searchedItems.items?.last == items?.last, self.presenter.searchedItems.nextPageToken != nil  {
+                        self.presenter.textFieldDidChanged(searchWord: self.searchWord)
                     }
                 }
             }
             
             .onChange(of: self.presenter.searchedItems) { items in
+                
                 SVProgressHUD.dismiss()
                 
             }

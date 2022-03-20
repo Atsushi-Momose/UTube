@@ -10,44 +10,76 @@ import Alamofire
 import KeychainAccess
 import Combine
 
-enum searchType: Int {
-    case newArrival = 1// 新着
+enum SearchType {
+    case newArrival // 新着
     case textSearch // 検索
-    case channelSearch // 特定のチャンネル検索
+    
+    init() {
+        self = SearchType.newArrival
+    }
 }
 
 protocol UTubeUsecase {
     func getSearchParam(param: String)
-    func listPublisher() -> AnyPublisher<[UTubeEntity], Error>
+    func listPublisher() -> AnyPublisher<UTubeEntity, Error>
 }
 
 class UTubeInteractor {
     
-    var searchedItems: [UTubeEntity]
+    var searchedItems: UTubeEntity
     private var searchParam: String?
     private var nextPageToken: String?
+    private var searchType = SearchType()
     
-    var utubeListPublisher: AnyPublisher<[UTubeEntity], Error> { subject.eraseToAnyPublisher() }
-    private let subject = PassthroughSubject<[UTubeEntity], Error>()
+    var utubeListPublisher: AnyPublisher<UTubeEntity, Error> { subject.eraseToAnyPublisher() }
+    private let subject = PassthroughSubject<UTubeEntity, Error>()
     
     init() {
-        self.searchedItems = [] // 検索結果
+        self.searchedItems = UTubeEntity() // 検索結果
         self.searchParam = nil // 検索ワード
         self.nextPageToken = nil // 検索結果件数が多い場合GCPから返却される 続きをリクエストするtoken
     }
 }
 
 extension UTubeInteractor: UTubeUsecase, UTubePresentation {
-   
+    
     // protocol
-    func listPublisher() -> AnyPublisher<[UTubeEntity], Error> {
+    func listPublisher() -> AnyPublisher<UTubeEntity, Error> {
         return self.utubeListPublisher
     }
     
     func textFieldDidChanged(searchWord: String) {}
     
     func getSearchParam(param: String) {
-        self.makeSearchURL(searchType: .textSearch, param: param, channelID: nil)
+        
+        if !param.isEmpty {
+            self.searchType = .textSearch
+        }
+        self.makeSearchURL(param: param, channelID: nil)
+    }
+    
+    private func makeSearchURL(param: String, channelID: String?) {
+        guard let apiKey = self.getApiKey() else { return }
+        let youTubeListURL = APIConstants().youTubeListURL
+        let searchChannelURL = APIConstants().searchChannelURL
+        
+        var searchURL = String()
+        
+        switch self.searchType {
+            
+        case .newArrival:
+            searchURL = (String(format: youTubeListURL, apiKey))
+            if self.nextPageToken != nil, self.nextPageToken != "" {
+                searchURL += "&pageToken=" + self.nextPageToken!
+            }
+        case .textSearch:
+            searchURL = (String(format: searchChannelURL, param, apiKey))
+            if self.nextPageToken != nil , self.nextPageToken != "" {
+                searchURL += "&pageToken=" + self.nextPageToken!
+            }
+        }
+        
+        self.fetchSearchResult(param: searchURL)
     }
     
     private func fetchSearchResult(param urlString: String) {
@@ -60,44 +92,31 @@ extension UTubeInteractor: UTubeUsecase, UTubePresentation {
                 
                 guard let data = response.data else { return }
                 
-                do {
-                    let utubeEntity = try JSONDecoder().decode(UTubeEntity.self, from: data)
-                    self.searchedItems.append(utubeEntity)
+                //  var result = UTubeEntity()
                 
-                    // presenterに通知
-                    //  NotificationCenter.default.post(name: .textSearchDidEnd, object: nil, userInfo: ["items": self.searchedItems])
+                do {
+                    let result: UTubeEntity = try JSONDecoder().decode(UTubeEntity.self, from: data)
                     
+                    switch self.searchType {
+                        
+                    case .newArrival:
+                        self.searchedItems = result
+                        
+                    case .textSearch:
+                        guard let appendItem = result.items else { return }
+                        let _ = appendItem.map({ self.searchedItems.items?.append($0) })
+                    }
+                    
+                    // 続きを取得するためのトークンを設定
+                    self.searchedItems.nextPageToken = result.nextPageToken
                     
                 } catch {
                     print("")
                 }
+                
+                
                 self.subject.send(self.searchedItems)
             }
-    }
-    
-    private func makeSearchURL(searchType: searchType, param: String, channelID: String?) {
-        guard let apiKey = self.getApiKey() else { return }
-        let youTubeListURL = APIConstants().youTubeListURL
-        let searchChannelURL = APIConstants().searchChannelURL
-        
-        var searchURL = String()
-        
-        switch searchType {
-        case .newArrival:
-            searchURL = (String(format: youTubeListURL, apiKey))
-            if self.nextPageToken != nil, self.nextPageToken != "" {
-                searchURL += "&pageToken=" + self.nextPageToken!
-            }
-        case .textSearch:
-            searchURL = (String(format: searchChannelURL, param, apiKey))
-            if self.nextPageToken != nil , self.nextPageToken != "" {
-                searchURL += "&pageToken=" + self.nextPageToken!
-            }
-        case .channelSearch:
-            guard let channelId = channelID else { return }
-            searchURL = (String(format: APIConstants().searchChannelIDURL, channelId, apiKey))
-        }
-        self.fetchSearchResult(param: searchURL)
     }
     
     
@@ -193,10 +212,5 @@ extension UTubeInteractor: UTubeUsecase, UTubePresentation {
     //                    failure(response.error!)
     //                }
     //        }
-
+    
 }
-
-extension Notification.Name {
-    static let textSearchDidEnd = Notification.Name("textSearchDidEnd")
-}
-
