@@ -12,9 +12,9 @@ protocol UTubePresentation {
     func textFieldDidChanged(searchWord: String)
 }
 
-class UtubePresenter {
+class UtubePresenter : ObservableObject {
     
-    var searchedItems: [UTubeEntity]
+    @Published var searchedItems: [UTubeEntity]
     private var interactor: UTubeUsecase
     private var cancellables = [AnyCancellable]()
     
@@ -22,10 +22,10 @@ class UtubePresenter {
         self.interactor = interactor
         self.searchedItems = [UTubeEntity]()
         
-        // UTubeInteractorから通知を受け取ったら自身のsearchedItemsを上書き
+        // UTubeInteractorから通知を受け取り自身のsearchedItemsを上書き
         self.interactor.listPublisher()
             .sink(receiveCompletion: { print ("completion: \($0)") },
-                  receiveValue: { value in self.searchedItems = value}) // eceiveValue: { print ("value: \($0)") })
+                  receiveValue: { value in self.searchedItems = value}) // receiveValue: { print ("value: \($0)") })
             .store(in: &cancellables)
 
         // 検索完了通知受け取り

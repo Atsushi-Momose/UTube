@@ -7,19 +7,19 @@
 
 import SwiftUI
 import ASCollectionView
+import SDWebImageSwiftUI
 
 struct ContentView: View {
     
     @State private var searchWord = ""
-    @State var dataExample = (0 ..< 30).map { $0 }
-    @State var searchedItems = UTubeEntity()
-    
-//    @State var title = interactor?.searchedItems.itemInfoList.snipetItem.title ?? ""
-    
-    @ObservedObject var interactor = UTubeInteractor()
+    @ObservedObject var presenter = UtubePresenter(interactor: UTubeInteractor())
+    // @ObservedObject var viewModel: ViewModel
     
     var router = UTubeRouter()
-    var presenter = UtubePresenter(interactor: UTubeInteractor())
+    
+    //    init() {
+    //        self.presenter = UtubePresenter(interactor: UTubeInteractor())
+    //    }
     
     var body: some View {
         
@@ -30,26 +30,34 @@ struct ContentView: View {
                 }
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
-            
-            
-            
-            ASCollectionView(data: dataExample, dataID: \.self) { item, _ in
-                Color.blue
-                    .overlay(Text("\(item)"))
+            List {
+                let items = self.presenter.searchedItems.first?.items
+                
+                ForEach(items ?? [], id: \.self) { item in
+                    VStack {
+                        WebImage(url: URL(string: item.snippet?.thumbnails?.default?.url ?? ""))
+                            .resizable()
+                            .frame(width: 240, height: 160, alignment: .center)
+                            .aspectRatio(contentMode: .fit)
+                        
+                        VStack(spacing: 5) {
+                            Text (item.snippet?.title ?? "") //タイトル
+                                .font(.headline)
+                            
+                            Text (item.snippet?.channelTitle ?? "") // ちゃんねる名
+                                .font(.footnote)
+                        }
+                    }
+                }
             }
-            .layout {
-                .grid(
-                    layoutMode: .fixedNumberOfColumns(3),
-                    itemSpacing: 5,
-                    lineSpacing: 5,
-                    itemSize: .absolute(100))
-            }
             
-            Spacer()
+            .onChange(of: self.presenter.searchedItems) { items in
+                
+                
+            }
         }
     }
 }
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
