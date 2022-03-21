@@ -7,22 +7,25 @@
 
 import Foundation
 
-struct UTubeEntity: Codable, Hashable {
-        
-    var pageInfo: pInfo?
-    var etag: String?
-    var kind: String?
+// 文字検索
+struct TextSearchedEntity: Codable, Hashable {
+    private var pageInfo: pInfo?
+    private var etag: String?
+    private var kind: String?
+    private var regionCode: String?
     var items: [itemInfoList]?
     var nextPageToken: String?
-    var regionCode: String?
+    
+    mutating func addNewItems(newItems: [itemInfoList]) {
+        newItems.forEach { items?.append($0) }
+    }
     
     struct pInfo: Codable, Hashable {
-        var resultsPerPage: NSInteger?
-        var totalResults: NSInteger?
+        private var resultsPerPage: NSInteger?
+        private var totalResults: NSInteger?
     }
     
     struct itemInfoList: Codable, Hashable {
-      //  var code = UUID() //ユニークID: APIから返却されたものではない
         var etag: String?
         var kind: String?
         var id: idItems?
@@ -30,8 +33,8 @@ struct UTubeEntity: Codable, Hashable {
     }
     
     struct idItems: Codable, Hashable {
-        var kind: String?
-        var videoId: String?
+        private var kind: String?
+        private var videoId: String?
     }
     
     struct snipetItem: Codable, Hashable {
@@ -42,6 +45,51 @@ struct UTubeEntity: Codable, Hashable {
         var description: String?
         var liveBroadcastContent: String?
         var channelTitle: String?
+    }
+    
+    struct thumbnailList: Codable, Hashable {
+        private var high: defaultItems?
+        private var medium: defaultItems?
+        var `default`: defaultItems?
+    }
+    
+    struct defaultItems: Codable, Hashable {
+        var url: String?
+        var width: NSInteger?
+        var height: NSInteger?
+    }
+}
+
+struct SoaringEntity: Codable, Hashable {
+    
+    private var etag: String?
+    private var kind: String?
+    var items: [itemInfoList]?
+    
+    struct itemInfoList: Codable, Hashable {
+        var etag: String?
+        var kind: String?
+        var id: String?
+        var snippet: snipetItem?
+    }
+    
+    struct snipetItem: Codable, Hashable {
+        var thumbnails: thumbnailList?
+        var channelId: String?
+        var title: String?
+        var publishedAt: String?
+        var description: String?
+        var liveBroadcastContent: String?
+        var channelTitle: String?
+        var categoryId: String?
+        var tags: [String]?
+        var defaultAudioLanguage: String?
+        var localized: localizedList?
+    }
+    
+    struct localizedList: Codable, Hashable {
+        var title: String?
+        var description: String?
     }
     
     struct thumbnailList: Codable, Hashable {
@@ -56,5 +104,3 @@ struct UTubeEntity: Codable, Hashable {
         var height: NSInteger?
     }
 }
-
-

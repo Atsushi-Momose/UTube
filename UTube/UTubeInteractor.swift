@@ -21,68 +21,73 @@ enum SearchType {
 
 protocol UTubeUsecase {
     func getSearchParam(param: String)
-    func listPublisher() -> AnyPublisher<UTubeEntity, Error>
+    
+    func textSearchedPublisher() -> AnyPublisher<TextSearchedEntity, Error>
+    func soaringPublisher() -> AnyPublisher<SoaringEntity, Error>
 }
 
 class UTubeInteractor {
     
-    var searchedItems: UTubeEntity
+    var textSearchedItems: TextSearchedEntity
+    var soaringItems: SoaringEntity
+    var textSearchedListPublisher: AnyPublisher<TextSearchedEntity, Error> { textSearchedSubject.eraseToAnyPublisher() }
+    var soaringListPublisher: AnyPublisher<SoaringEntity, Error> { soaringSubject.eraseToAnyPublisher() }
+
     private var searchParam: String?
     private var nextPageToken: String?
     private var searchType = SearchType()
-    
-    var utubeListPublisher: AnyPublisher<UTubeEntity, Error> { subject.eraseToAnyPublisher() }
-    private let subject = PassthroughSubject<UTubeEntity, Error>()
+    private var previousParam: String?
+    private let textSearchedSubject = PassthroughSubject<TextSearchedEntity, Error>()
+    private let soaringSubject = PassthroughSubject<SoaringEntity, Error>()
     
     init() {
-        self.searchedItems = UTubeEntity() // 検索結果
+        self.textSearchedItems = TextSearchedEntity() // テキスト検索結果
+        self.soaringItems = SoaringEntity() // 急上昇
         self.searchParam = nil // 検索ワード
         self.nextPageToken = nil // 検索結果件数が多い場合GCPから返却される 続きをリクエストするtoken
+        self.previousParam = nil
     }
 }
 
 extension UTubeInteractor: UTubeUsecase, UTubePresentation {
     
-    // protocol
-    func listPublisher() -> AnyPublisher<UTubeEntity, Error> {
-        return self.utubeListPublisher
+    func textSearchedPublisher() -> AnyPublisher<TextSearchedEntity, Error> {
+        return self.textSearchedListPublisher
+    }
+    
+    func soaringPublisher() -> AnyPublisher<SoaringEntity, Error> {
+        return self.soaringListPublisher
     }
     
     func textFieldDidChanged(searchWord: String) {}
     
     func getSearchParam(param: String) {
-        
         if !param.isEmpty {
             self.searchType = .textSearch
         }
-        self.makeSearchURL(param: param, channelID: nil)
+        self.makeSearchURL(param: param)
     }
     
-    private func makeSearchURL(param: String, channelID: String?) {
+    private func makeSearchURL(param: String) {
         guard let apiKey = self.getApiKey() else { return }
         let youTubeListURL = APIConstants().youTubeListURL
         let searchChannelURL = APIConstants().searchChannelURL
-        
         var searchURL = String()
         
         switch self.searchType {
             
         case .newArrival:
             searchURL = (String(format: youTubeListURL, apiKey))
-            if self.nextPageToken != nil, self.nextPageToken != "" {
-                searchURL += "&pageToken=" + self.nextPageToken!
-            }
         case .textSearch:
             searchURL = (String(format: searchChannelURL, param, apiKey))
-            if self.nextPageToken != nil , self.nextPageToken != "" {
-                searchURL += "&pageToken=" + self.nextPageToken!
-            }
         }
-        
-        self.fetchSearchResult(param: searchURL)
+        if self.nextPageToken != nil, self.nextPageToken != "" {
+            searchURL += "&pageToken=" + self.nextPageToken!
+        }
+        self.fetchSearchResult(urlString: searchURL, param: param)
     }
     
-    private func fetchSearchResult(param urlString: String) {
+    private func fetchSearchResult(urlString: String, param: String) {
         
         guard let url = URL(string: urlString) else { fatalError() }
         
@@ -92,33 +97,35 @@ extension UTubeInteractor: UTubeUsecase, UTubePresentation {
                 
                 guard let data = response.data else { return }
                 
-                //  var result = UTubeEntity()
-                
                 do {
-                    let result: UTubeEntity = try JSONDecoder().decode(UTubeEntity.self, from: data)
                     
                     switch self.searchType {
                         
-                    case .newArrival:
-                        self.searchedItems = result
-                        
                     case .textSearch:
-                        guard let appendItem = result.items else { return }
-                        let _ = appendItem.map({ self.searchedItems.items?.append($0) })
+                        let result: TextSearchedEntity = try JSONDecoder().decode(TextSearchedEntity.self, from: data)
+                        
+                        if self.previousParam == param, self.nextPageToken != nil, self.nextPageToken != "" {
+                            self.textSearchedItems.addNewItems(newItems: result.items ?? [])
+                            
+                        } else {
+                            self.textSearchedItems = TextSearchedEntity()
+                            self.textSearchedItems = result
+                        }
+                        
+                        self.nextPageToken = result.nextPageToken
+                        self.textSearchedSubject.send(self.textSearchedItems)
+                        
+                    case .newArrival:
+                        let result: SoaringEntity = try JSONDecoder().decode(SoaringEntity.self, from: data)
+                        self.soaringItems = result
+                        self.soaringSubject.send(self.soaringItems)
                     }
-                    
-                    // 続きを取得するためのトークンを設定
-                    self.searchedItems.nextPageToken = result.nextPageToken
-                    
                 } catch {
                     print("")
                 }
-                
-                
-                self.subject.send(self.searchedItems)
+                self.previousParam = param
             }
     }
-    
     
     private func getApiKey() -> String? {
         let keychain = Keychain(service: "mmsc.am32-gmail.com.UTube")
@@ -132,85 +139,4 @@ extension UTubeInteractor: UTubeUsecase, UTubePresentation {
             return nil
         }
     }
-    
-    //        // 新着一覧
-    //        private func loadYouTubeList(url: String, searchType: searchType) {
-    //
-    //            let apiManager = APIManager()
-    //
-    //            apiManager.ConnectionAPI(url: url, success: {(result: Data) -> Void in
-    //
-    //                let decoder: JSONDecoder = JSONDecoder()
-    //                do {
-    //                    // 初回取得の場合
-    //                    if self.isFirst {
-    //                        self.youtubeList = try decoder.decode(YouTubeList.self, from: result)
-    //                        self.isFirst = false
-    //                    } else {
-    //
-    //                        switch searchType {
-    //                        case .channelSearch:
-    //                            self.channelIDSearchResult = try decoder.decode(YouTubeList.self, from: result)
-    //    //                        let list: YouTubeList = try decoder.decode(YouTubeList.self, from: result)
-    //    //
-    //    //                        guard let appendItem = list.items, appendItem.count != 0 else {
-    //    //                            self.eventSubject.onCompleted()
-    //    //                            return
-    //    //                        }
-    //    //
-    //    //                        // 続きを取得するためのトークンを設定
-    //    //                        self.youtubeList.nextPageToken = list.nextPageToken
-    //    //                        // youtubeListに追加
-    //    //                        let _ = appendItem.map({ self.youtubeList.items?.append($0) })
-    //                        case .newArrival, .textSearch:
-    //                            // 2回目以降
-    //                            let list: YouTubeList = try decoder.decode(YouTubeList.self, from: result)
-    //
-    //                            guard let appendItem = list.items, appendItem.count != 0 else {
-    //                                self.eventSubject.onCompleted()
-    //                                return
-    //                            }
-    //
-    //                            // 続きを取得するためのトークンを設定
-    //                            self.youtubeList.nextPageToken = list.nextPageToken
-    //
-    //                            // youtubeListに追加
-    //                            let _ = appendItem.map({ self.youtubeList.items?.append($0) })
-    //                        }
-    //                    }
-    //                    self.eventSubject.onNext(1)
-    //                } catch {
-    //                    print("json convert failed in JSONDecoder", error.localizedDescription)
-    //                }
-    //            }, failure: {(result: Error?) -> Void in
-    //
-    //            })
-    //        }
-    //    }
-    
-    
-    //        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: [:])
-    //
-    //            .validate(statusCode: 200..<300)
-    //            .responseJSON { response in
-    //                switch response.result {
-    //                case .success(_):
-    //                    do {
-    //                        guard let data = response.data else { return }
-    //
-    //                        let jsonResult = try JSONSerialization.jsonObject(with: data) as! NSMutableDictionary
-    //
-    //                        self.youtubeNextPageToken = jsonResult["nextPageToken"] as! String?
-    //                        let ary = jsonResult["items"] as! NSArray
-    //                        //let youtubeList = YouTubeList(ary: ary)
-    //                        success(ary)
-    //                    }
-    //                    catch {
-    //                        failure(response.error)
-    //                    }
-    //                case .failure(_):
-    //                    failure(response.error!)
-    //                }
-    //        }
-    
 }

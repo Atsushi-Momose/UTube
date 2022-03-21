@@ -14,7 +14,8 @@ struct ContentView: View {
     
     @State private var searchWord = ""
     @ObservedObject var presenter = UtubePresenter(interactor: UTubeInteractor())
-  
+    @State var searchedItems = TextSearchedEntity()
+    @State var soaringItems = SoaringEntity()
     var router = UTubeRouter()
         
     var body: some View {
@@ -28,7 +29,7 @@ struct ContentView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             List {
-                let items = self.presenter.searchedItems.items
+                let items = self.searchedItems.items
                 
                 ForEach(items ?? [], id: \.self) { item in
                     VStack {
@@ -44,23 +45,46 @@ struct ContentView: View {
                             Text (item.snippet?.channelTitle ?? "") // ちゃんねる名
                                 .font(.footnote)
                         }
-                        
                     }
-                }
-                
-                // 一番下までスクロールした時にnextPageTokenがあれば取得を行う
-                .onAppear() {
-                    
-                    if self.presenter.searchedItems.items?.last == items?.last, self.presenter.searchedItems.nextPageToken != nil  {
-                        self.presenter.textFieldDidChanged(searchWord: self.searchWord)
+                    .onAppear() {
+                        // 一番下までスクロールした時にnextPageTokenがあれば取得を行う
+                        if self.searchedItems.items?.last == item, self.searchedItems.nextPageToken != nil  {
+                            self.presenter.textFieldDidChanged(searchWord: self.searchWord)
+                        }
                     }
                 }
             }
             
-            .onChange(of: self.presenter.searchedItems) { items in
+            List {
+                let items = self.soaringItems.items
                 
+                ForEach(items ?? [], id: \.self) { item in
+                    VStack {
+                        WebImage(url: URL(string: item.snippet?.thumbnails?.default?.url ?? ""))
+                            .resizable()
+                            .frame(width: 240, height: 160, alignment: .center)
+                            .aspectRatio(contentMode: .fit)
+                        
+                        VStack(spacing: 5) {
+                            Text (item.snippet?.title ?? "") //タイトル
+                                .font(.headline)
+                            
+                            Text (item.snippet?.channelTitle ?? "") // ちゃんねる名
+                                .font(.footnote)
+                        }
+                    }
+                }
+            }
+            
+            .onChange(of: self.presenter.textSearchedItems) { items in
+                self.searchedItems = items
                 SVProgressHUD.dismiss()
                 
+            }
+            
+            .onChange(of: self.presenter.soaringItems) { items in
+                self.soaringItems = items
+                SVProgressHUD.dismiss()
             }
         }
     }

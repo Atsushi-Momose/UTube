@@ -8,14 +8,14 @@
 import Foundation
 
 protocol RepositorySearchResultWireframe: AnyObject {
-    func showRepositoryDetail(_ repository: UTubeEntity)
+    func showRepositoryDetail(_ repository: TextSearchedEntity)
 }
 
 class UTubeRouter {
 }
 
 extension UTubeRouter: RepositorySearchResultWireframe {
-    func showRepositoryDetail(_ repository: UTubeEntity) {
+    func showRepositoryDetail(_ repository: TextSearchedEntity) {
         
     }
 }

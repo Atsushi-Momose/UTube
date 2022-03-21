@@ -14,18 +14,24 @@ protocol UTubePresentation {
 
 class UtubePresenter : ObservableObject {
     
-    @Published var searchedItems: UTubeEntity
+    @Published var textSearchedItems: TextSearchedEntity
+    @Published var soaringItems: SoaringEntity
     private var interactor: UTubeUsecase
     private var cancellables = [AnyCancellable]()
     
     init(interactor: UTubeInteractor) {
         self.interactor = interactor
-        self.searchedItems = UTubeEntity()
+        self.textSearchedItems = TextSearchedEntity()
+        self.soaringItems = SoaringEntity()
         
-        // UTubeInteractorから通知を受け取り自身のsearchedItemsを上書き
-        self.interactor.listPublisher()
+        self.interactor.textSearchedPublisher() // テキスト検索監視
             .sink(receiveCompletion: { print ("completion: \($0)") },
-                  receiveValue: { value in self.searchedItems = value}) // receiveValue: { print ("value: \($0)") })
+                  receiveValue: { value in self.textSearchedItems = value }) //  receiveValue: { print ("value: \($0)") })
+            .store(in: &cancellables)
+        
+        self.interactor.soaringPublisher() // 急上昇監視
+            .sink(receiveCompletion: { print ("completion: \($0)") },
+                  receiveValue: { value in self.soaringItems = value }) // receiveValue: { print ("value: \($0)") })
             .store(in: &cancellables)
         
         self.searchParameter(param: "")
