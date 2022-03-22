@@ -15,30 +15,30 @@ enum SearchType {
     case textSearch // 検索
     
     init() {
-        self = SearchType.newArrival
+        self = SearchType.textSearch
     }
 }
 
 protocol UTubeUsecase {
     func getSearchParam(param: String)
     
-    func textSearchedPublisher() -> AnyPublisher<TextSearchedEntity, Error>
-    func soaringPublisher() -> AnyPublisher<SoaringEntity, Error>
+    func textSearchedPublisher() -> AnyPublisher<TextSearchedEntity, Never>
+    func soaringPublisher() -> AnyPublisher<SoaringEntity, Never>
 }
 
 class UTubeInteractor {
     
     var textSearchedItems: TextSearchedEntity
     var soaringItems: SoaringEntity
-    var textSearchedListPublisher: AnyPublisher<TextSearchedEntity, Error> { textSearchedSubject.eraseToAnyPublisher() }
-    var soaringListPublisher: AnyPublisher<SoaringEntity, Error> { soaringSubject.eraseToAnyPublisher() }
+    var textSearchedListPublisher: AnyPublisher<TextSearchedEntity, Never> { textSearchedSubject.eraseToAnyPublisher() }
+    var soaringListPublisher: AnyPublisher<SoaringEntity, Never> { soaringSubject.eraseToAnyPublisher() }
 
     private var searchParam: String?
     private var nextPageToken: String?
     private var searchType = SearchType()
     private var previousParam: String?
-    private let textSearchedSubject = PassthroughSubject<TextSearchedEntity, Error>()
-    private let soaringSubject = PassthroughSubject<SoaringEntity, Error>()
+    private let textSearchedSubject = PassthroughSubject<TextSearchedEntity, Never>()
+    private let soaringSubject = PassthroughSubject<SoaringEntity, Never>()
     
     init() {
         self.textSearchedItems = TextSearchedEntity() // テキスト検索結果
@@ -51,20 +51,20 @@ class UTubeInteractor {
 
 extension UTubeInteractor: UTubeUsecase, UTubePresentation {
     
-    func textSearchedPublisher() -> AnyPublisher<TextSearchedEntity, Error> {
+    func textSearchedPublisher() -> AnyPublisher<TextSearchedEntity, Never> {
         return self.textSearchedListPublisher
     }
     
-    func soaringPublisher() -> AnyPublisher<SoaringEntity, Error> {
+    func soaringPublisher() -> AnyPublisher<SoaringEntity, Never> {
         return self.soaringListPublisher
     }
     
     func textFieldDidChanged(searchWord: String) {}
     
     func getSearchParam(param: String) {
-        if !param.isEmpty {
-            self.searchType = .textSearch
-        }
+//        if !param.isEmpty {
+//            self.searchType = .textSearch
+//        }
         self.makeSearchURL(param: param)
     }
     

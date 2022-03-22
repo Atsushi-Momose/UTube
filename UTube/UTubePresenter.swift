@@ -25,13 +25,11 @@ class UtubePresenter : ObservableObject {
         self.soaringItems = SoaringEntity()
         
         self.interactor.textSearchedPublisher() // テキスト検索監視
-            .sink(receiveCompletion: { print ("completion: \($0)") },
-                  receiveValue: { value in self.textSearchedItems = value }) //  receiveValue: { print ("value: \($0)") })
+            .sink(receiveValue: { value in self.textSearchedItems = value }) //  receiveValue: { print ("value: \($0)") })
             .store(in: &cancellables)
         
         self.interactor.soaringPublisher() // 急上昇監視
-            .sink(receiveCompletion: { print ("completion: \($0)") },
-                  receiveValue: { value in self.soaringItems = value }) // receiveValue: { print ("value: \($0)") })
+            .sink(receiveValue: { value in self.soaringItems = value }) // receiveValue: { print ("value: \($0)") })
             .store(in: &cancellables)
         
         self.searchParameter(param: "")

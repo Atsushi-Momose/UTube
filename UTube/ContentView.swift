@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import ASCollectionView
 import SDWebImageSwiftUI
 import SVProgressHUD
 
@@ -17,7 +16,6 @@ struct ContentView: View {
     @State var searchedItems = TextSearchedEntity()
     @State var soaringItems = SoaringEntity()
     var router = UTubeRouter()
-        
     var body: some View {
         
         VStack {
@@ -28,6 +26,7 @@ struct ContentView: View {
                 }
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
+            
             List {
                 let items = self.searchedItems.items
                 
@@ -54,28 +53,28 @@ struct ContentView: View {
                     }
                 }
             }
-            
-            List {
-                let items = self.soaringItems.items
-                
-                ForEach(items ?? [], id: \.self) { item in
-                    VStack {
-                        WebImage(url: URL(string: item.snippet?.thumbnails?.default?.url ?? ""))
-                            .resizable()
-                            .frame(width: 240, height: 160, alignment: .center)
-                            .aspectRatio(contentMode: .fit)
-                        
-                        VStack(spacing: 5) {
-                            Text (item.snippet?.title ?? "") //タイトル
-                                .font(.headline)
-                            
-                            Text (item.snippet?.channelTitle ?? "") // ちゃんねる名
-                                .font(.footnote)
-                        }
-                    }
-                }
-            }
-            
+
+//            List {
+//                let items = self.soaringItems.items
+//
+//                ForEach(items ?? [], id: \.self) { item in
+//                    VStack {
+//                        WebImage(url: URL(string: item.snippet?.thumbnails?.default?.url ?? ""))
+//                            .resizable()
+//                            .frame(width: 240, height: 160, alignment: .center)
+//                            .aspectRatio(contentMode: .fit)
+//
+//                        VStack(spacing: 5) {
+//                            Text (item.snippet?.title ?? "") //タイトル
+//                                .font(.headline)
+//
+//                            Text (item.snippet?.channelTitle ?? "") // ちゃんねる名
+//                                .font(.footnote)
+//                        }
+//                    }
+//                }
+//            }
+
             .onChange(of: self.presenter.textSearchedItems) { items in
                 self.searchedItems = items
                 SVProgressHUD.dismiss()
