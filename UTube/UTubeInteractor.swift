@@ -81,8 +81,8 @@ extension UTubeInteractor: UTubeUsecase, UTubePresentation {
         case .textSearch:
             searchURL = (String(format: searchChannelURL, param, apiKey))
         }
-        if self.nextPageToken != nil, self.nextPageToken != "" {
-            searchURL += "&pageToken=" + self.nextPageToken!
+        if let nextPageToken = self.nextPageToken {
+            searchURL += "&pageToken=" + nextPageToken
         }
         self.fetchSearchResult(urlString: searchURL, param: param)
     }
@@ -104,7 +104,8 @@ extension UTubeInteractor: UTubeUsecase, UTubePresentation {
                     case .textSearch:
                         let result: TextSearchedEntity = try JSONDecoder().decode(TextSearchedEntity.self, from: data)
                         
-                        if self.previousParam == param, self.nextPageToken != nil, self.nextPageToken != "" {
+                        if self.previousParam == param,
+                           !self.nextPageToken!.isEmpty {               
                             self.textSearchedItems.addNewItems(newItems: result.items ?? [])
                             
                         } else {

@@ -20,6 +20,7 @@
 		9026024B27E0709F00570BCE /* UTubeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9026024A27E0709F00570BCE /* UTubeInteractor.swift */; };
 		9026024D27E070CF00570BCE /* UTubeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9026024C27E070CF00570BCE /* UTubeEntity.swift */; };
 		9026024F27E0718800570BCE /* UTubeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9026024E27E0718800570BCE /* UTubeRouter.swift */; };
+		903972FC27EB379A003FAAEB /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903972FB27EB379A003FAAEB /* Utility.swift */; };
 		905FED5827E0A93200482078 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905FED5727E0A93200482078 /* APIConstants.swift */; };
 		908C700A27E1F65C003E4E6A /* ASCollectionView in Frameworks */ = {isa = PBXBuildFile; productRef = 908C700927E1F65C003E4E6A /* ASCollectionView */; };
 		90BE000127E70F1300657479 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BE000027E70F1300657479 /* AppDelegate.swift */; };
@@ -64,6 +65,7 @@
 		9026024A27E0709F00570BCE /* UTubeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTubeInteractor.swift; sourceTree = "<group>"; };
 		9026024C27E070CF00570BCE /* UTubeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTubeEntity.swift; sourceTree = "<group>"; };
 		9026024E27E0718800570BCE /* UTubeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTubeRouter.swift; sourceTree = "<group>"; };
+		903972FB27EB379A003FAAEB /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		905FED5727E0A93200482078 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		90BE000027E70F1300657479 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CCBD9B2ABAC50463C7EB9BA1 /* Pods-UTube.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UTube.release.xcconfig"; path = "Target Support Files/Pods-UTube/Pods-UTube.release.xcconfig"; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				9026024A27E0709F00570BCE /* UTubeInteractor.swift */,
 				9026024C27E070CF00570BCE /* UTubeEntity.swift */,
 				905FED5727E0A93200482078 /* APIConstants.swift */,
+				903972FB27EB379A003FAAEB /* Utility.swift */,
 			);
 			path = UTube;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 			files = (
 				90BE000127E70F1300657479 /* AppDelegate.swift in Sources */,
 				9026024B27E0709F00570BCE /* UTubeInteractor.swift in Sources */,
+				903972FC27EB379A003FAAEB /* Utility.swift in Sources */,
 				905FED5827E0A93200482078 /* APIConstants.swift in Sources */,
 				9026024D27E070CF00570BCE /* UTubeEntity.swift in Sources */,
 				9026024927E06FF400570BCE /* UTubePresenter.swift in Sources */,

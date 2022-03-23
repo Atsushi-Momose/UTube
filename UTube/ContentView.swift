@@ -47,7 +47,8 @@ struct ContentView: View {
                     }
                     .onAppear() {
                         // 一番下までスクロールした時にnextPageTokenがあれば取得を行う
-                        if self.searchedItems.items?.last == item, self.searchedItems.nextPageToken != nil  {
+                        if self.searchedItems.items?.last == item, !self.searchedItems.nextPageToken.isEmpty  {
+                            SVProgressHUD.show()
                             self.presenter.textFieldDidChanged(searchWord: self.searchWord)
                         }
                     }
